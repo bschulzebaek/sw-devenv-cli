@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+start_instance() {
+    cd $1
+    devenv up
+}
+
+# ToDo: Detached mode?

@@ -29,10 +29,11 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-echo "PROJECT_NAME  = ${PROJECT_NAME}"
-echo "BRANCH_NAME   = ${BRANCH_NAME}"
-echo $CONFIG_base_remote
+if [ -d "$PROJECT_NAME" ]; then
+    print_error "Project with name '$PROJECT_NAME' already exists!"
+    exit 1
+fi
 
 git clone $CONFIG_base_remote -b $BRANCH_NAME $PROJECT_NAME
-cd $PROJECT_NAME
-devenv up
+
+start_instance "$PROJECT_NAME"

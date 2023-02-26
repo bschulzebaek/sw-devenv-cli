@@ -33,5 +33,4 @@ if [ ! -d "./$PROJECT_NAME" ]; then
     exit 1
 fi
 
-cd $PROJECT_NAME
-devenv up
+start_instance "$PROJECT_NAME"
