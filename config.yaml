@@ -1,0 +1,4 @@
+base:
+  # Absolute path which shopware devenv projects are stored in
+  directory: "/home/baek/swdev-root"
+  remote: "git@github.com:shopware/platform.git"

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+PROJECT_NAME="platform"
+BRANCH_NAME="trunk"
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -n|--name)
+      PROJECT_NAME="$2"
+      shift
+      shift
+      ;;
+    -b|--branch)
+      BRANCH_NAME="$2"
+      shift
+      shift
+      ;;
+    -h|--help)
+      print_help "Missing help for command 'create'!"
+      exit 0
+      ;;
+    -*|--*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+echo "PROJECT_NAME  = ${PROJECT_NAME}"
+echo "BRANCH_NAME   = ${BRANCH_NAME}"
+echo $CONFIG_base_remote
+
+git clone $CONFIG_base_remote -b $BRANCH_NAME $PROJECT_NAME
+cd $PROJECT_NAME
+devenv up

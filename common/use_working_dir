@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+use_working_dir() {
+    mkdir -p $CONFIG_base_directory
+
+    cd $CONFIG_base_directory
+}

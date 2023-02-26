@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+PROJECT_NAME=""
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -n|--name)
+      PROJECT_NAME="$2"
+      shift
+      shift
+      ;;
+    -h|--help)
+      print_help "Missing help for command 'stop'!"
+      exit 0
+      ;;
+    -*|--*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+if [ -z "${PROJECT_NAME}" ]; then
+    print_error "Missing required parameter --name"
+    exit 1
+fi
+
+if [ ! -d "./$PROJECT_NAME" ]; then
+    print_error "Project '$PROJECT_NAME' does not exist"
+    exit 1
+fi
+
+cd $PROJECT_NAME

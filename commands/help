@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+echo "Usage: $__PROGRAM_NAME <subcommand> [options]"
+echo "Subcommands:"
+for command in "$__COMMAND_DIR"/*
+do
+    echo "└ $(basename $command)"
+done
+echo ""
+echo "For help with each subcommand run:"
+echo "$__PROGRAM_NAME <subcommand> -h|--help"
+echo ""
+
+print_info "Using: $__PROGRAM_NAME:$__VERSION"
+
+exit 0

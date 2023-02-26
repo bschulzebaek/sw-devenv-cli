@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -u
+set -e
+
+__PROGRAM_NAME="swdev"
+__PROGRAM_PATH=$(dirname $(realpath "$0"))
+__VERSION="0.0.1"
+__COMMON_DIR="$__PROGRAM_PATH/common"
+__COMMAND_DIR="$__PROGRAM_PATH/commands"
+
+for f in $__COMMON_DIR/*; do source $f; done
+
+eval $(parse_yaml "$__PROGRAM_PATH/config.yaml" "CONFIG_")
+
+use_working_dir
+
+subcommand="${1:-help}"
+subcommand_path="${__COMMAND_DIR}/${subcommand}"
+
+if [ -f $subcommand_path ]; then
+    . "$subcommand_path"
+else
+    print_error "Command '$subcommand' not found!\n"
+
+    . "$__COMMAND_DIR/help"
+fi
