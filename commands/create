@@ -4,25 +4,25 @@ PROJECT_NAME=""
 BRANCH_NAME=""
 
 while [[ $# -gt 0 ]]; do
-  case $1 in
-    -n|--name)
-      PROJECT_NAME="$2"
-      shift
-      shift
-      ;;
-    -b|--branch)
-      BRANCH_NAME="$2"
-      shift
-      shift
-      ;;
-    -*|--*)
-      print_error "Unknown option $1"
-      exit 1
-      ;;
-    *)
-      shift
-      ;;
-  esac
+    case $1 in
+        -n|--name)
+            PROJECT_NAME="$2"
+            shift
+            shift
+            ;;
+        -b|--branch)
+            BRANCH_NAME="$2"
+            shift
+            shift
+            ;;
+        -*|--*)
+            print_error "Unknown option $1"
+            exit 1
+            ;;
+        *)
+            shift
+            ;;
+    esac
 done
 
 if [ -z "$PROJECT_NAME" ]; then

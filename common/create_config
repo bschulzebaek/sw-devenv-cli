@@ -5,6 +5,16 @@ create_config() {
 
     local configPath=$(pwd)/devenv.local.nix
 
+    if test -f "$configPath"; then
+        read -p "Config file already exists. Override? y/n: " -n 1 -r
+        echo
+        echo
+        if ! [[ $REPLY =~ ^[Yy]$ ]]
+        then
+            exit 0
+        fi
+    fi
+
     cp $__PROGRAM_PATH/devenv.template.nix $configPath
 
     local caddyPort=$(get_unused_port)
@@ -18,6 +28,8 @@ create_config() {
     sed -i -e "s/\__REDIS_PORT__/$redisPort/" $configPath
 
     print_info "Config location: $configPath"
+    print_info "Your instance will be available at \e[4mhttp://localhost:$caddyPort\e[0m."
     print_info "Run 'swdev start --name $1' to apply the config."
-    print_info "Your instance will be available at 'http://localhost:$caddyPort'. You may have to run 'composer setup' inside the shell first."
+    echo
+    print_info "If this instance is new or updated, run 'composer setup' inside the shell next."
 }

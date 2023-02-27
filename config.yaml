@@ -1,9 +1,11 @@
 # Documentation: https://github.com/bschulzebaek/sw-devenv-cli#configuration
 
 base:
-  directory: "/home/$USER/swdev-root"
+  directory: "/home/$USER/.swdev-projects"
   remote: "git@github.com:shopware/platform.git"
 devenv:
+  ports:
+    start: 8000
+    end: 10000
+  # Currently unused
   parentVirtualHost: ".dev.localhost"
-  portRangeStart: 8000
-  portRangeEnd: 10000

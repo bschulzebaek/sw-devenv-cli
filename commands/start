@@ -1,22 +1,28 @@
 #!/usr/bin/env bash
 
 PROJECT_NAME=""
+HIDDEN=false
 
 while [[ $# -gt 0 ]]; do
-  case $1 in
-    -n|--name)
-      PROJECT_NAME="$2"
-      shift
-      shift
-      ;;
-    -*|--*)
-      print_error "Unknown option $1"
-      exit 1
-      ;;
-    *)
-      shift
-      ;;
-  esac
+    case $1 in
+        -n|--name)
+            PROJECT_NAME="$2"
+            shift
+            shift
+            ;;
+        -q|--quiet)
+            print_warn "Option --quiet currently is not implemented!"
+            HIDDEN=true
+            shift
+            ;;
+        -*|--*)
+            print_error "Unknown option $1"
+            exit 1
+            ;;
+        *)
+            shift
+            ;;
+    esac
 done
 
 if [ -z "${PROJECT_NAME}" ]; then
@@ -29,4 +35,5 @@ if [ ! -d "./$PROJECT_NAME" ]; then
     exit 1
 fi
 
-start_instance "$PROJECT_NAME"
+use_project_dir $PROJECT_NAME
+start_instance $HIDDEN

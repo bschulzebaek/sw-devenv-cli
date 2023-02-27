@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
 start_instance() {
-    cd $1
-    devenv up
-}
+    local hidden=$1
 
-# ToDo: Detached mode?
+    if [ $hidden = true ] ; then
+        devenv up # ? https://github.com/cachix/devenv/pull/83
+    else
+        devenv up
+    fi
+}

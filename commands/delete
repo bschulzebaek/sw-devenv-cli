@@ -3,20 +3,20 @@
 PROJECT_NAME=""
 
 while [[ $# -gt 0 ]]; do
-  case $1 in
-    -n|--name)
-      PROJECT_NAME="$2"
-      shift
-      shift
-      ;;
-    -*|--*)
-      print_error "Unknown option $1"
-      exit 1
-      ;;
-    *)
-      shift
-      ;;
-  esac
+    case $1 in
+        -n|--name)
+            PROJECT_NAME="$2"
+            shift
+            shift
+            ;;
+        -*|--*)
+            print_error "Unknown option $1"
+            exit 1
+            ;;
+        *)
+            shift
+            ;;
+    esac
 done
 
 if [ -z "${PROJECT_NAME}" ]; then
@@ -29,8 +29,9 @@ if [ ! -d "./$PROJECT_NAME" ]; then
     exit 1
 fi
 
-read -p "Confirm deletion of '$PROJECT_NAME': y/n? " -n 1 -r
+read -p "Confirm deletion of '$PROJECT_NAME'? y/n: " -n 1 -r
 echo
+
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     echo "Deleting ..."

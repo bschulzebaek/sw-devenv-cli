@@ -4,13 +4,17 @@ set -eu
 
 __PROGRAM_NAME="swdev"
 __PROGRAM_PATH=$(dirname $(realpath "$0"))
-__VERSION="0.0.1"
+__VERSION=$(cd $__PROGRAM_PATH && git describe --tags --abbrev=0)
 __COMMON_DIR="$__PROGRAM_PATH/common"
 __COMMAND_DIR="$__PROGRAM_PATH/commands"
 
-for f in $__COMMON_DIR/*; do source $f; done
+for fn in $__COMMON_DIR/*; do source $fn; done
 
 eval $(parse_yaml "$__PROGRAM_PATH/config.yaml" "CONFIG_")
+
+if test -f "$__PROGRAM_PATH/config.local.yaml"; then
+    eval $(parse_yaml "$__PROGRAM_PATH/config.local.yaml" "CONFIG_")
+fi
 
 use_working_dir
 
@@ -20,7 +24,9 @@ subcommand_path="${__COMMAND_DIR}/${subcommand}"
 if [ -f $subcommand_path ]; then
     . "$subcommand_path"
 else
-    print_error "Command '$subcommand' not found!\n"
+    print_error "Command '$subcommand' not found!"
 
     . "$__COMMAND_DIR/help"
 fi
+
+exit 0

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-echo "Usage: $__PROGRAM_NAME <subcommand> [options]"
-echo "Subcommands:"
+print_info "$__PROGRAM_NAME:$__VERSION"
+echo
+echo "$__PROGRAM_NAME <subcommand> [options]"
+
 for command in "$__COMMAND_DIR"/*
 do
     echo "└ $(basename $command)"
 done
-echo ""
-echo "Visit https://github.com/bschulzebaek/sw-devenv-cli#commands for details for each subcommand"
-echo ""
 
-print_info "Using $__PROGRAM_NAME:$__VERSION"
+echo
+print_help "Visit \e[4mhttps://github.com/bschulzebaek/sw-devenv-cli#commands\e[0m for reference!"
 
 exit 0

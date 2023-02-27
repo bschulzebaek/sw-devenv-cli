@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+stop_instance() {
+    cd ./.devenv/state
+
+    # It's important to send SIGTERM so devenv can handle the services by itself!
+    kill -15 $(cat devenv.pid)
+}
