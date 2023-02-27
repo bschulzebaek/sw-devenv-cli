@@ -21,7 +21,7 @@ swdev shell --name 6.5-test
 composer setup
 ```
 
-## Command Referenc
+## Command Reference
 
 All listed commands are a subcommand to `swdev`, so they are called like `swdev create --name 6.5-test --branch 6.5.0.0`.
 
