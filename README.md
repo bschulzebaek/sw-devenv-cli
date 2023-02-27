@@ -21,20 +21,22 @@ swdev shell --name 6.5-test
 composer setup
 ```
 
-## Command Reference
+## Command Referenc
+
+All listed commands are a subcommand to `swdev`, so they are called like `swdev create --name 6.5-test --branch 6.5.0.0`.
 
 | Command | Description | Arguments | |
 | ------- | --------- | ----------- |-- |
-| swdev create | Create a new shopware platform clone and add pre-configured devenv config files to it. | --name | Name of the project directory. The name will be used for most further commands.  |
+| create | Create a new shopware platform clone and add pre-configured devenv config files to it. | --name | Name of the project directory. The name will be used for most further commands.  |
 ||| --branch | Clone a specific Shopware branch. |
-| swdev create-config | Create a new devenv.local.nix config file.<br>This is useful, if you manually cloned Shopware or want to reset the config.<br>Note: This command will assign new ports to setup. | --name | |
-| swdev delete | Completely remove the project directory including all local git branches. Make sure to push any changes beforehand! | --name | |
-| swdev help | List all available commands. |-||
-| swdev list | List all local instances. |-||
-| swdev shell | Open the devenv shell for the specified instance. Requires `swdev start` to be run first and in parallel.<br>Note: Depending on your shell configuration this command will prompt your password.<br>Calls `devenv shell` internally. | --name ||
-| swdev start | Start the devenv process for the specified instance.<br>Calls `devenv up` internally. | --name ||
+| create-config | Create a new devenv.local.nix config file.<br>This is useful, if you manually cloned Shopware or want to reset the config.<br>Note: This command will assign new ports to setup. | --name | |
+| delete | Completely remove the project directory including all local git branches. Make sure to push any changes beforehand! | --name | |
+| help | List all available commands. |-||
+| list | List all local instances. |-||
+| shell | Open the devenv shell for the specified instance. Requires `swdev start` to be run first and in parallel.<br>Note: Depending on your shell configuration this command will prompt your password.<br>Calls `devenv shell` internally. | --name ||
+| start | Start the devenv process for the specified instance.<br>Calls `devenv up` internally. | --name ||
 ||| --quiet, -q | **WIP**: Run `devenv up` in the background. |
-| swdev stop | Stops the devenv process of the specified instance.<br>You can also just hit `CTRL+C` if the process is not hidden. | --name ||
+| stop | Stops the devenv process of the specified instance.<br>You can also just hit `CTRL+C` if the process is not hidden. | --name ||
 
 ## ToDo
 
