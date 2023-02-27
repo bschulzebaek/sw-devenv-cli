@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-PROJECT_NAME="platform"
-BRANCH_NAME="trunk"
+PROJECT_NAME=""
+BRANCH_NAME=""
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -15,12 +15,8 @@ while [[ $# -gt 0 ]]; do
       shift
       shift
       ;;
-    -h|--help)
-      print_help "Missing help for command 'create'!"
-      exit 0
-      ;;
     -*|--*)
-      echo "Unknown option $1"
+      print_error "Unknown option $1"
       exit 1
       ;;
     *)
@@ -29,11 +25,24 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+if [ -z "$PROJECT_NAME" ]; then
+    print_error "Missing required parameter --name"
+    exit 1
+fi
+
 if [ -d "$PROJECT_NAME" ]; then
     print_error "Project with name '$PROJECT_NAME' already exists!"
     exit 1
 fi
 
+
+if [ -z "$BRANCH_NAME" ]; then
+    print_info "No option for '--branch' provided. Using 'trunk' as default value."
+    BRANCH_NAME="trunk"
+fi
+
 git clone $CONFIG_base_remote -b $BRANCH_NAME $PROJECT_NAME
 
-start_instance "$PROJECT_NAME"
+echo
+
+create_config $PROJECT_NAME

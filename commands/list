@@ -1,26 +1,10 @@
 #!/usr/bin/env bash
 
-while [[ $# -gt 0 ]]; do
-  case $1 in
-    -h|--help)
-      print_help "Missing help for command 'list'!"
-      exit 0
-      ;;
-    -*|--*)
-      echo "Unknown option $1"
-      exit 1
-      ;;
-    *)
-      shift
-      ;;
-  esac
-done
-
-TOTAL_DIRS=$(find . -mindepth 1 -maxdepth 1 -type d | wc -l)
+TOTAL_DIRS=$(find . -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' | wc -l)
 
 if [ $TOTAL_DIRS -eq 0 ]; then
     print_warn "No projects found in path '$CONFIG_base_directory'"
 else
-    print_info "Listing available projects (total: $TOTAL_DIRS)"
-    find $(pwd) -mindepth 1 -maxdepth 1 -type d
+    print_info "Listing available instances (total: $TOTAL_DIRS)"
+    find $(pwd) -mindepth 1 -maxdepth 1 -type d -not -path '*/.*'
 fi

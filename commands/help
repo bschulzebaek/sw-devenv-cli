@@ -7,10 +7,9 @@ do
     echo "└ $(basename $command)"
 done
 echo ""
-echo "For help with each subcommand run:"
-echo "$__PROGRAM_NAME <subcommand> -h|--help"
+echo "Visit https://github.com/bschulzebaek/sw-devenv-cli#commands for details for each subcommand"
 echo ""
 
-print_info "Using: $__PROGRAM_NAME:$__VERSION"
+print_info "Using $__PROGRAM_NAME:$__VERSION"
 
 exit 0

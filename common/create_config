@@ -1,0 +1,23 @@
+#!/bin/bash
+
+create_config() {
+    use_project_dir $1
+
+    local configPath=$(pwd)/devenv.local.nix
+
+    cp $__PROGRAM_PATH/devenv.template.nix $configPath
+
+    local caddyPort=$(get_unused_port)
+    local databasePort=$(get_unused_port)
+    local adminerPort=$(get_unused_port)
+    local redisPort=$(get_unused_port)
+
+    sed -i -e "s/\__CADDY_PORT__/$caddyPort/" $configPath
+    sed -i -e "s/\__DATABASE_PORT__/$databasePort/" $configPath
+    sed -i -e "s/\__ADMINER_PORT__/$adminerPort/" $configPath
+    sed -i -e "s/\__REDIS_PORT__/$redisPort/" $configPath
+
+    print_info "Config location: $configPath"
+    print_info "Run 'swdev start --name $1' to apply the config."
+    print_info "Your instance will be available at 'http://localhost:$caddyPort'. You may have to run 'composer setup' inside the shell first."
+}

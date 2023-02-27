@@ -29,4 +29,13 @@ if [ ! -d "./$PROJECT_NAME" ]; then
     exit 1
 fi
 
-start_instance "$PROJECT_NAME"
+read -p "Confirm deletion of '$PROJECT_NAME': y/n? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    echo "Deleting ..."
+    rm -r $PROJECT_NAME
+    echo "... complete"
+fi
+
+exit 0

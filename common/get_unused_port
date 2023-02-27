@@ -1,0 +1,11 @@
+#!/bin/bash
+
+get_unused_port() {
+    while :
+    do
+        PORT="`shuf -i $CONFIG_devenv_portRangeStart-$CONFIG_devenv_portRangeEnd -n 1`"
+        ss -lpn | grep -q ":$PORT " || break
+    done
+
+    echo $PORT
+}

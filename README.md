@@ -1,28 +1,41 @@
 # swdev-cli
 
+This repository contains a helper CLI for managing Shopware 6 devenv instances. It's main purpose is to make the creation of multiple (short-lived) instances easier. This repository assumes that you have successfully setup all prerequisites, which are also described in this [official Shopware guide](https://developer.shopware.com/docs/guides/installation/devenv).
+
+## Quickstart
+
+```
+swdev create --name 6.5.0.0-test --branch 6.5.0.0
+```
+
 ## Commands
 
 | Command | Arguments | Description |
 | ------- | --------- | ----------- |
-| swdev create | --name --branch | Clones a new instance and prepares devenv config. |
+| swdev create | --name<br>--branch | Clones a new instance and prepare devenv config. |
+| swdev create-config | --name | Optional: Creates a new devenv.local.nix config file. This is useful, if you manually setup a project directory or want to reset the config. This commands finds unused ports for the setup. |
+| swdev delete | --name | Completely remove the project directory and all local git branches. |
+| swdev get-dir | --name | Prints the absolute path to the specified instance. |
 | swdev help | - | List all available commands. |
 | swdev list | - | List all local instances. |
-| swdev setup | --name | Re-run the setup process for an already existing project. |
 | swdev start | --name | Starts the devenv process, it will be attached to the current terminal session. |
-| swdev stop | --name | ? |
+| swdev shell | --name | Open the devenv shell for the specified instance. |
 
-## Installation
+## Setup
 
 ### Prerequisites
 
-* Git
-* Devenv ([Follow the sw guide](https://developer.shopware.com/docs/guides/installation/devenv))
+* [Git](https://git-scm.com/)
+* [Nix, Cachix (optional), devenv](https://devenv.sh/getting-started/)
 
-### Setup
+### Installation
 
 ```bash
+# e.g. cd /home/<user>/tools/
 git clone https://github.com/bschulzebaek/sw-devenv-cli
-sudo ln -s /<absolute-repo-path>/sw-devenv-cli /usr/local/bin/swdev
+
+# Optional: Symlink to the executable so you can call 'swdev' from everywhere
+sudo ln -s /<full-path>/sw-devenv-cli/swdev /usr/local/bin/swdev
 
 swdev <subcommand> [options]
 ```
@@ -34,5 +47,5 @@ Properties can be changed in the `config.yaml` file.
 
 | Property | Description |
 | ------- | ----------- |
-| base.directory | The directory where instances are stored. |
-| base.remote | The Git remote to use. |
+| base.directory | The directory where instances are stored in. |
+| base.remote | The Git remote to use for cloning new instances. |

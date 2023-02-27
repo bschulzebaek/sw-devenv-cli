@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 PROJECT_NAME=""
 
 while [[ $# -gt 0 ]]; do
@@ -29,4 +30,4 @@ if [ ! -d "./$PROJECT_NAME" ]; then
     exit 1
 fi
 
-start_instance "$PROJECT_NAME"
+create_config $PROJECT_NAME
