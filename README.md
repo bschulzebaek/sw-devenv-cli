@@ -2,16 +2,7 @@
 
 This repository contains a helper CLI for managing Shopware 6 devenv instances. It's main purpose is to make the creation of multiple (short-lived) instances easier. This repository assumes that you have successfully setup all prerequisites, which are also described in this [official Shopware guide](https://developer.shopware.com/docs/guides/installation/devenv).
 
-
-
-## Table of Contents
-
-* [Quickstart](#quickstart)
-* [Command Reference](#command-reference)
-* [ToDo](#todo)
-* [Wiki](https://github.com/bschulzebaek/sw-devenv-cli/wiki)
-    * [Getting Started](https://github.com/bschulzebaek/sw-devenv-cli/wiki)
-    * [Troubleshooting](https://github.com/bschulzebaek/sw-devenv-cli/wiki/Troubleshooting)
+<u>[Detailed information can be found in the wiki.](https://github.com/bschulzebaek/sw-devenv-cli/wiki)</u>
 
 ## Quickstart
 
