@@ -42,7 +42,6 @@
   services.mysql.settings.mysqld.port = __DATABASE_PORT__;
 
   services.redis.port = __REDIS_PORT__;
-  services.redis.enable = false;
 
   services.adminer.enable = true;
   services.adminer.listen = "127.0.0.1:__ADMINER_PORT__";
