@@ -33,6 +33,7 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 | delete | Completely remove the project directory including all local git branches. Make sure to push any changes beforehand! | --name | |
 | help | List all available commands. |-||
 | list | List all local instances. |-||
+| self-update | Run `git fetch && git pull` in the swdev directory. |-||
 | shell | Open the devenv shell for the specified instance. Requires `swdev start` to be run first and in parallel.<br>Note: Depending on your shell configuration this command will prompt your password.<br>Calls `devenv shell` internally. | --name ||
 | start | Start the devenv process for the specified instance.<br>Calls `devenv up` internally. | --name ||
 ||| --quiet, -q | **WIP**: Run `devenv up` in the background. |
