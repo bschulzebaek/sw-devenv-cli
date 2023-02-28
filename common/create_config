@@ -32,7 +32,7 @@ create_config() {
     sed -i -e "s/\__REDIS_PORT__/$redisPort/" $configPath
 
     print_info "Config location: $configPath"
-    print_info "Your instance will be available at \e[4mhttp://localhost:$hostPort\e[0m."
+    print_info "Your instance will be available at $(underline "http://localhost:$hostPort")"
     print_info "Run 'swdev start --name $1' to apply the config."
     echo
     print_info "If this instance is new or updated, run 'composer setup' inside the shell next."

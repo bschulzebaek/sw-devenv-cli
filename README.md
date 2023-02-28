@@ -28,7 +28,7 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 | Command | Description | Arguments | |
 | ------- | --------- | ----------- |-- |
 | create | Create a new shopware platform clone and add pre-configured devenv config files to it. | --name | Name of the project directory. The name will be used for most further commands.  |
-||| --branch | Clone a specific Shopware branch. |
+||| --branch | Optional: Clone a specific Shopware branch. |
 | create-config | Create a new devenv.local.nix config file.<br>This is useful, if you manually cloned Shopware or want to reset the config.<br>Note: This command will assign new ports to setup. | --name | |
 | delete | Completely remove the project directory including all local git branches. Make sure to push any changes beforehand! | --name | |
 | help | List all available commands. |-||
@@ -47,3 +47,4 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 * Automatically create v-hosts via `devenv.template.nix` and project name
 * Add `services` command to list all used service hosts of a project
 * Improve `self-update` command UX
+* Implement scripts for different setup templates, such as Platform+Rufus (see `swdev create --template`)

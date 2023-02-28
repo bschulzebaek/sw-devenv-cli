@@ -2,6 +2,7 @@
 
 PROJECT_NAME=""
 BRANCH_NAME=""
+TEMPLATE_NAME=""
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -12,6 +13,11 @@ while [[ $# -gt 0 ]]; do
             ;;
         -b|--branch)
             BRANCH_NAME="$2"
+            shift
+            shift
+            ;;
+        -t|--template)
+            TEMPLATE_NAME="$2"
             shift
             shift
             ;;
@@ -35,14 +41,19 @@ if [ -d "$PROJECT_NAME" ]; then
     exit 1
 fi
 
-
 if [ -z "$BRANCH_NAME" ]; then
-    print_info "No option for '--branch' provided. Using 'trunk' as default value."
+    # print_info "No option for '--branch' provided. Using 'trunk' as default value."
     BRANCH_NAME="trunk"
 fi
 
-git clone $CONFIG_base_remote -b $BRANCH_NAME $PROJECT_NAME
+if [ -z "$TEMPLATE_NAME" ]; then
+    # print_info "No option for '--template' provided. Using 'platform' as default value."
+    TEMPLATE_NAME="platform"
+fi
 
-echo
-
-create_config $PROJECT_NAME
+if [ ! -f $__PROGRAM_PATH/setups/$TEMPLATE_NAME ]; then
+    print_error "Template with name '$TEMPLATE_NAME' does not exist!"
+    exit 1
+else
+    . $__PROGRAM_PATH/setups/$TEMPLATE_NAME
+fi

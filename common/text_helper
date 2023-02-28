@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ansi() {
+    echo -e "\e[${1}m${*:2}\e[0m"
+}
+
+underline() {
+    ansi 4 "$@"
+}

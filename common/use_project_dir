@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-use_project_dir() {
-    use_working_dir
-
-    cd $1
-}
