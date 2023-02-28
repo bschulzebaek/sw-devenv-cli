@@ -15,7 +15,14 @@ create_config() {
         fi
     fi
 
+    if test -f "$__PROGRAM_PATH/devenv.template.local.nix"; then
+    cp $__PROGRAM_PATH/devenv.template.local.nix $configPath
+    else
     cp $__PROGRAM_PATH/devenv.template.nix $configPath
+    fi
+
+
+
 
     local caddyPort=$(get_unused_port)
     local databasePort=$(get_unused_port)
