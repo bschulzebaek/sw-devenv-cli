@@ -11,5 +11,3 @@ done
 
 echo
 print_help "Visit \e[4mhttps://github.com/bschulzebaek/sw-devenv-cli#commands\e[0m for reference!"
-
-exit 0

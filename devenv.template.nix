@@ -24,7 +24,7 @@
   services.caddy = {
     enable = lib.mkDefault true;
 
-    virtualHosts.":__CADDY_PORT__" = lib.mkDefault {
+    virtualHosts.":__HOST_PORT__" = lib.mkDefault {
       extraConfig = lib.mkDefault ''
         @default {
           not path /theme/* /media/* /thumbnail/* /bundles/* /css/* /fonts/* /js/* /sitemap/*
@@ -48,7 +48,7 @@
 
   services.mailhog.enable = false;
 
-  env.APP_URL = "http://localhost:__CADDY_PORT__";
+  env.APP_URL = "http://localhost:__HOST_PORT__";
   env.DATABASE_URL = "mysql://shopware:shopware@127.0.0.1:__DATABASE_PORT__/shopware?sslmode=disable&charset=utf8mb4";
-  env.CYPRESS_baseUrl = "http://localhost:__CADDY_PORT__";
+  env.CYPRESS_baseUrl = "http://localhost:__HOST_PORT__";
 }

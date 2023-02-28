@@ -38,5 +38,3 @@ then
     rm -r $PROJECT_NAME
     echo "... complete"
 fi
-
-exit 0

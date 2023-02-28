@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+use_program_dir() {
+    cd $__PROGRAM_PATH
+}

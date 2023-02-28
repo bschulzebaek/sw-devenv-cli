@@ -16,26 +16,23 @@ create_config() {
     fi
 
     if test -f "$__PROGRAM_PATH/devenv.template.local.nix"; then
-    cp $__PROGRAM_PATH/devenv.template.local.nix $configPath
+        cp $__PROGRAM_PATH/devenv.template.local.nix $configPath
     else
-    cp $__PROGRAM_PATH/devenv.template.nix $configPath
+        cp $__PROGRAM_PATH/devenv.template.nix $configPath
     fi
 
-
-
-
-    local caddyPort=$(get_unused_port)
+    local hostPort=$(get_unused_port)
     local databasePort=$(get_unused_port)
     local adminerPort=$(get_unused_port)
     local redisPort=$(get_unused_port)
 
-    sed -i -e "s/\__CADDY_PORT__/$caddyPort/" $configPath
+    sed -i -e "s/\__HOST_PORT__/$hostPort/" $configPath
     sed -i -e "s/\__DATABASE_PORT__/$databasePort/" $configPath
     sed -i -e "s/\__ADMINER_PORT__/$adminerPort/" $configPath
     sed -i -e "s/\__REDIS_PORT__/$redisPort/" $configPath
 
     print_info "Config location: $configPath"
-    print_info "Your instance will be available at \e[4mhttp://localhost:$caddyPort\e[0m."
+    print_info "Your instance will be available at \e[4mhttp://localhost:$hostPort\e[0m."
     print_info "Run 'swdev start --name $1' to apply the config."
     echo
     print_info "If this instance is new or updated, run 'composer setup' inside the shell next."
