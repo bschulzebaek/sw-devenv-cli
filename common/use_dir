@@ -4,6 +4,16 @@ use_working_dir() {
     local dir="${CONFIG_base_directory}"
 
     mkdir -p $dir
+    mkdir -p $dir/.state
+
+    cd $dir
+}
+
+use_state_dir() {
+    local dir="${CONFIG_base_directory}/.state"
+
+    mkdir -p $dir
+
     cd $dir
 }
 

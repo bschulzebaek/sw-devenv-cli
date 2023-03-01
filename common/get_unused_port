@@ -1,36 +1,24 @@
 #!/bin/bash
 
-# __get_unused_port_linux() {
-#     for port in $(seq $CONFIG_devenv_ports_start $CONFIG_devenv_ports_end);
-#     do
-#         echo -ne "\035" | nc -w 1 127.0.0.1 $port > /dev/null 2>&1;
-#         [ $? -eq 1 ] && echo "$port" && break;
-#     done
-# }
-
-# __get_unused_port_darwin() {
-#     for port in $(seq $CONFIG_devenv_ports_start $CONFIG_devenv_ports_end);
-#     do
-#         echo -ne "\035" | nc -w 1 127.0.0.1 $port > /dev/null 2>&1;
-#         [ $? -eq 1 ] && echo "$port" && break;
-#     done
-# }
-
 get_unused_port() (
+    use_state_dir
+
     local port=-1
+    local usedPorts=$(cat ./assigned_ports 2>/dev/null)
 
-    # get_os
-
-    for _port in $(seq $CONFIG_devenv_ports_start $CONFIG_devenv_ports_end);
+    for ((i=$CONFIG_devenv_ports_start; $i <= $CONFIG_devenv_ports_end; i++))
     do
-        echo -ne "\035" | nc -w 0 127.0.0.1 $_port > /dev/null 2>&1;
-        [ $? -eq 1 ] && port=$_port && break;
+        if [[ ",$usedPorts," = *",$i,"* ]]; then
+            continue
+        fi
+
+        usedPorts="$usedPorts,$i"
+
+        echo -ne "\035" | nc -w 0 127.0.0.1 $i > /dev/null 2>&1;
+        [ $? -eq 1 ] && port=$i && break;
     done
 
-    if [[ $port = -1 ]] ; then
-        print_error "No unused port found in range '$CONFIG_devenv_ports_start-$CONFIG_devenv_ports_end'!"
-        exit 1
-    fi
+    echo $usedPorts > ./assigned_ports
 
     echo $port
 )

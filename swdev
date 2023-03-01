@@ -28,5 +28,3 @@ else
 
     . "$__COMMAND_DIR/help"
 fi
-
-exit 0

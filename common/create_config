@@ -26,10 +26,12 @@ create_config() {
     local adminerPort=$(get_unused_port)
     local redisPort=$(get_unused_port)
 
-    sed -i -e "s/\__HOST_PORT__/$hostPort/" $configPath
-    sed -i -e "s/\__DATABASE_PORT__/$databasePort/" $configPath
-    sed -i -e "s/\__ADMINER_PORT__/$adminerPort/" $configPath
-    sed -i -e "s/\__REDIS_PORT__/$redisPort/" $configPath
+    use_project_dir $1
+
+    sed -i -e "s/\__HOST_PORT__/$hostPort/;" $configPath
+    sed -i -e "s/\__DATABASE_PORT__/$databasePort/;" $configPath
+    sed -i -e "s/\__ADMINER_PORT__/$adminerPort/;" $configPath
+    sed -i -e "s/\__REDIS_PORT__/$redisPort/;" $configPath
 
     print_info "Config location: $configPath"
     print_info "Your instance will be available at $(underline "http://localhost:$hostPort")"
