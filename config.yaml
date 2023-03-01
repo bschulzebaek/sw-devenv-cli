@@ -1,7 +1,7 @@
 # Documentation: https://github.com/bschulzebaek/sw-devenv-cli#configuration
 
 base:
-  directory: "/home/$USER/swdev-projects"
+  directory: "$HOME/swdev-projects/"
   remote: "git@github.com:shopware/platform.git"
 devenv:
   ports:

@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
 use_working_dir() {
-    local dir="${CONFIG_base_directory}"
+    mkdir -p $CONFIG_base_directory
 
-    mkdir -p $dir
-    mkdir -p $dir/.state
-
-    cd $dir
+    cd $CONFIG_base_directory
 }
 
 use_state_dir() {
