@@ -49,4 +49,3 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 * Automatically create v-hosts via `devenv.template.nix` and project name
 * Add `services` command to list all used service hosts of a project
 * Improve `self-update` command UX
-* Keep track of assigned ports
