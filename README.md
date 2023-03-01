@@ -10,6 +10,8 @@ This repository contains a helper CLI for managing Shopware 6 devenv instances. 
 git clone https://github.com/bschulzebaek/sw-devenv-cli
 sudo ln -s /<full-path>/sw-devenv-cli/swdev /usr/local/bin/swdev
 
+# Note for Mac users: The config.yaml option "base.directory" needs to be replaced with an absolute path for now.
+
 # Create a new instance
 swdev create --name 6.5-test --branch 6.5.0.0
 
