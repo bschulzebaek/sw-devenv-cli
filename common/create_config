@@ -1,16 +1,17 @@
 #!/bin/bash
 
 create_config() {
-    use_project_dir $1
+    use_project_dir
+    override="${2:-0}"
 
     local configPath=$(pwd)/devenv.local.nix
 
-    if test -f "$configPath"; then
+    if [ $override -ne 1 ] && [ -f $configPath ]; then
         read -p "Config file already exists. Override? y/n: " -n 1 -r
         echo
         echo
-        if ! [[ $REPLY =~ ^[Yy]$ ]]
-        then
+
+        if ! [[ $REPLY =~ ^[Yy]$ ]]; then
             exit 0
         fi
     fi
@@ -37,12 +38,12 @@ create_config() {
         sed -i -e "s/\\$str/$tmpPort/;" $configPath
     done
 
-    use_project_dir $1
+    use_project_dir
 
     print_info "Config location: $configPath"
     echo
     print_info "Your instance will be available at $appProtocol://$appUrl"
-    print_info "Run 'swdev start --name $1' to apply the config."
+    print_info "Run 'swdev start $1' to apply the config."
     echo
     print_info "If this instance is new or updated, run 'composer setup' inside the shell next."
 }

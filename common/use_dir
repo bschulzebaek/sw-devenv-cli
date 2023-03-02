@@ -17,7 +17,7 @@ use_state_dir() {
 use_project_dir() {
     use_working_dir
 
-    cd $1
+    cd $projectName
 }
 
 use_program_dir() {

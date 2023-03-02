@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-git clone $CONFIG_base_remote -b $BRANCH_NAME $PROJECT_NAME
+git clone $CONFIG_base_remote -b $BRANCH_NAME $projectName
 
 echo
 
-create_config $PROJECT_NAME
+create_config $projectName

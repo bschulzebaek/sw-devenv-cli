@@ -21,10 +21,24 @@ use_working_dir
 subcommand="${1:-help}"
 subcommand_path="${__COMMAND_DIR}/${subcommand}"
 
+projectName="${2:-""}"
+
 if [ -f $subcommand_path ]; then
+    if [[ "$subcommand" =~ ^(create|create-config|delete|shell|start|stop)$ ]]; then
+        if [[ -z "$projectName" ]]; then
+            print_error "Usage: swdev $subcommand <project-name>"
+
+            exit 1
+        fi
+    fi
+
     . "$subcommand_path"
 else
     print_error "Command '$subcommand' not found!"
 
     . "$__COMMAND_DIR/help"
+
+    exit 1
 fi
+
+exit 0

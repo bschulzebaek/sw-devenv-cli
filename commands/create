@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 
-PROJECT_NAME=""
 BRANCH_NAME=""
 TEMPLATE_NAME=""
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -n|--name)
-            PROJECT_NAME="$2"
-            shift
-            shift
-            ;;
         -b|--branch)
             BRANCH_NAME="$2"
             shift
@@ -31,13 +25,8 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [ -z "$PROJECT_NAME" ]; then
-    print_error "Missing required parameter --name"
-    exit 1
-fi
-
-if [ -d "$PROJECT_NAME" ]; then
-    print_error "Project with name '$PROJECT_NAME' already exists!"
+if [ -d "$projectName" ]; then
+    print_error "Project with name '$projectName' already exists!"
     exit 1
 fi
 

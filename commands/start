@@ -1,15 +1,9 @@
 #!/usr/bin/env bash
 
-PROJECT_NAME=""
 HIDDEN=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -n|--name)
-            PROJECT_NAME="$2"
-            shift
-            shift
-            ;;
         -q|--quiet)
             print_warn "Option --quiet currently is not implemented!"
             HIDDEN=true
@@ -25,15 +19,10 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [ -z "${PROJECT_NAME}" ]; then
-    print_error "Missing required parameter --name"
+if [ ! -d "./$projectName" ]; then
+    print_error "Project '$projectName' does not exist"
     exit 1
 fi
 
-if [ ! -d "./$PROJECT_NAME" ]; then
-    print_error "Project '$PROJECT_NAME' does not exist"
-    exit 1
-fi
-
-use_project_dir $PROJECT_NAME
+use_project_dir
 start_instance $HIDDEN
