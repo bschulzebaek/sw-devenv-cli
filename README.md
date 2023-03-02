@@ -44,8 +44,6 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 ## ToDo
 
 * Auto-completion for subcommands
-* Simplify `devenv.template.nix` to bare minimum
 * Implement background process handling for `devenv up`, used by `start -q` and `stop` commands ([see also](https://github.com/cachix/devenv/pull/83))
-* Automatically create v-hosts via `devenv.template.nix` and project name
 * Add `services` command to list all used service hosts of a project
 * Improve `self-update` command UX

@@ -10,4 +10,4 @@ do
 done
 
 echo
-print_help "Visit $(underline "https://github.com/bschulzebaek/sw-devenv-cli#command") for reference!"
+print_help "Visit https://github.com/bschulzebaek/sw-devenv-cli#command-reference for reference!"
