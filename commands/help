@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-print_info "$__PROGRAM_NAME:$__VERSION"
+print_info "Version $__VERSION"
 echo
 echo "$__PROGRAM_NAME <subcommand> [options]"
 
