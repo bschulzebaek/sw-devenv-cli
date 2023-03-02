@@ -27,17 +27,15 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 
 | Command | Description | Arguments | |
 | ------- | --------- | ----------- |-- |
-| create \<name> | Create a new shopware platform clone and add pre-configured devenv config files to it. |||
-||| --branch | Optional: Clone a specific Shopware branch. |
-| create-config \<name> | Create a new devenv.local.nix config file.<br>This is useful, if you manually cloned Shopware or want to reset the config.<br>Note: This command will assign new ports to setup. | -y | Confirm overriding config. |
-| delete \<name> | Completely remove the project directory including all local git branches. Make sure to push any changes beforehand! |||
-| help | List all available commands. |-||
-| list | List all local instances. |-||
-| self-update | Run `git fetch && git pull` in the swdev directory. |-||
-| shell \<name> | Open the devenv shell for the specified instance. Requires `swdev start` to be run first and in parallel.<br>Note: Depending on your shell configuration this command will prompt your password.<br>Calls `devenv shell` internally. |||
-| start \<name> | Start the devenv process for the specified instance.<br>Calls `devenv up` internally. |||
-||| --quiet, -q | **WIP**: Run `devenv up` in the background. |
-| stop \<name> | Stops the devenv process of the specified instance.<br>You can also just hit `CTRL+C` if the process is not hidden. |||
+| `create <name>` | Create a new shopware platform clone and add pre-configured devenv config files to it. | --branch | Optional: Clone a specific Shopware branch. |
+| `create-config <name>` | Create a new devenv.local.nix config file.<br>This is useful, if you manually cloned Shopware or want to reset the config.<br>Note: This command will assign new ports to setup. | -y | Confirm overriding config. |
+| `delete <name>` | Completely remove the project directory including all local git branches. Make sure to push any changes beforehand! | -y | Confirm deleting project. |
+| `help` | List all available commands. |-||
+| `list` | List all local instances. |-||
+| `self-update` | Run `git fetch && git pull` in the swdev directory. |-||
+| `shell <name>` | Open the devenv shell for the specified instance. Requires `swdev start` to be run first and in parallel.<br>Note: Depending on your shell configuration this command will prompt your password.<br>Calls `devenv shell` internally. |||
+| `start <name>` | Start the devenv process for the specified instance.<br>Calls `devenv up` internally. |||
+| `stop <name>` | Stops the devenv process of the specified instance.<br>You can also  hit `CTRL+C` in the terminal if the `swdev start` process is not hidden. |||
 
 ## ToDo
 
@@ -45,3 +43,4 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 * Implement background process handling for `devenv up`, used by `start -q` and `stop` commands ([see also](https://github.com/cachix/devenv/pull/83))
 * Add `services` command to list all used service hosts of a project
 * Improve `self-update` command UX
+* Add `open` command to open the app url in default browser

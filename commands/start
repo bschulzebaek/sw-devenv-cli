@@ -4,8 +4,8 @@ HIDDEN=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -q|--quiet)
-            print_warn "Option --quiet currently is not implemented!"
+        -q)
+            print_warn "Option -q currently is not implemented!"
             HIDDEN=true
             shift
             ;;
