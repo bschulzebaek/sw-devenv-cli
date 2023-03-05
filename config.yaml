@@ -4,7 +4,7 @@ base:
   directory: "$HOME/swdev-projects/"
   remote: "git@github.com:shopware/platform.git"
 devenv:
-  useVhost: 0
+  useVhost: 1
   useSsl: 0
   ports:
     start: 8000
