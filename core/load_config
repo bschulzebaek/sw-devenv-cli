@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+eval $(parse_yaml "$__PROGRAM_PATH/config.yaml" "CONFIG_")
+
+if test -f "$__PROGRAM_PATH/config.local.yaml"; then
+    eval $(parse_yaml "$__PROGRAM_PATH/config.local.yaml" "CONFIG_")
+fi

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+get_project_url() {
+    appProtocol=`sed -nE 's/appProtocol = "(.*?)";/\1/p' $__DEVENV_FILE`
+    appHost=`sed -nE 's/appUrl = "(.*?)";/\1/p' $__DEVENV_FILE`
+    appPort=`sed -nE 's/appPort = (.*?);/\1/p' $__DEVENV_FILE`
+
+    url=""
+
+    if [[ $appHost = "localhost" ]]; then
+        url="${appProtocol}://${appHost}:${appPort}"
+    else
+        url="${appProtocol}://${appHost}"
+    fi
+
+    echo $url | tr -d '[:space:]'
+}

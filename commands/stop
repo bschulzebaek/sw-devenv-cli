@@ -12,10 +12,5 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [ ! -d "./$projectName" ]; then
-    print_error "Project '$projectName' does not exist"
-    exit 1
-fi
-
 use_project_dir
 stop_instance

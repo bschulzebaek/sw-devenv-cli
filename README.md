@@ -32,9 +32,11 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 | `create-config <name>` | Create a new devenv.local.nix config file.<br>This is useful, if you manually cloned Shopware or want to reset the config.<br>Note: This command will assign new ports to setup. | -y | Confirm overriding config. |
 | `delete <name>` | Completely remove the project directory including all local git branches. Make sure to push any changes beforehand! | -y | Confirm deleting project. |
 | `help` | List all available commands. |||
+| `info <name>` | List all services for the specified instance. |||
 | `list` | List all local instances. |||
-| `self-update` | Run `git fetch && git pull` in the swdev directory. |||
-| `shell <name>` | Open the devenv shell for the specified instance. Requires `swdev start` to be run first and in parallel.<br>Note: Depending on your shell configuration this command will prompt your password.<br>Calls `devenv shell` internally. |||
+| `open <name>` | Open the specified instance in your default browser. WIP: This command might not work depending on your operating system. Use `swdev info <name>` in this case. |||
+| `self-update` | Runs `git fetch && git pull` in the swdev directory. |||
+| `shell <name>` | Open the devenv shell for the specified instance. Requires `swdev start` to be run first and in parallel.<br>Calls `devenv shell` internally. |||
 | `start <name>` | Start the devenv process for the specified instance.<br>Calls `devenv up` internally. |||
 | `stop <name>` | Stops the devenv process of the specified instance.<br>You can also  hit `CTRL+C` in the terminal if the `swdev start` process is not hidden. |||
 
@@ -42,6 +44,5 @@ All listed commands are a subcommand to `swdev`, so they are called like `swdev 
 
 * Auto-completion for subcommands
 * Implement background process handling for `devenv up`, used by `start -q` and `stop` commands ([see also](https://github.com/cachix/devenv/pull/83))
-* Add `services` command to list all used service hosts of a project
 * Improve `self-update` command UX
-* Add `open` command to open the app url in default browser
+* Add interactive mode (-i) to `create-config` command to specify ports/urls and to enable/disable services (mailhog, redis, adminer)

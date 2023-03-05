@@ -6,39 +6,21 @@ __PROGRAM_NAME="swdev"
 __PROGRAM_PATH=$(dirname $(realpath "$0"))
 __VERSION=$(cd $__PROGRAM_PATH && git describe --tags --abbrev=0)
 __COMMON_DIR="$__PROGRAM_PATH/common"
+__CORE_DIR="$__PROGRAM_PATH/core"
 __COMMAND_DIR="$__PROGRAM_PATH/commands"
+__DEVENV_FILE="devenv.local.nix"
 
 for fn in $__COMMON_DIR/*; do source $fn; done
 
-eval $(parse_yaml "$__PROGRAM_PATH/config.yaml" "CONFIG_")
-
-if test -f "$__PROGRAM_PATH/config.local.yaml"; then
-    eval $(parse_yaml "$__PROGRAM_PATH/config.local.yaml" "CONFIG_")
-fi
-
-use_working_dir
+source $__CORE_DIR/load_config
 
 subcommand="${1:-help}"
 subcommand_path="${__COMMAND_DIR}/${subcommand}"
-
 projectName="${2:-""}"
 
-if [ -f $subcommand_path ]; then
-    if [[ "$subcommand" =~ ^(create|create-config|delete|shell|start|stop)$ ]]; then
-        if [[ -z "$projectName" ]]; then
-            print_error "Usage: swdev $subcommand <project-name>"
+use_working_dir
 
-            exit 1
-        fi
-    fi
-
-    . "$subcommand_path"
-else
-    print_error "Command '$subcommand' not found!"
-
-    . "$__COMMAND_DIR/help"
-
-    exit 1
-fi
+source $__CORE_DIR/input_validation
+source $subcommand_path
 
 exit 0

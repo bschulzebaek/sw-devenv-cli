@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if ! [[ -f $subcommand_path ]]; then
+    print_error "Command '$subcommand' not found! Use 'swdev help' for more information."
+
+    exit 1
+fi
+
+# Commands requiring $projectName parameter
+if [[ "$subcommand" =~ ^(create|create-config|delete|shell|start|stop|open|info)$ ]] && [[ -z "$projectName" ]]; then
+    print_error "Usage: swdev $subcommand <project-name>"
+
+    exit 1
+fi
+
+# Commands requiring existing projects
+if [[ "$subcommand" =~ ^(create-config|delete|shell|start|stop|open|info)$ ]]; then
+    if ! [[ -d "$projectName" ]]; then
+        print_error "Project '$projectName' does not exist"
+        exit 1
+    fi
+fi

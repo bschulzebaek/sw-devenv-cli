@@ -25,22 +25,22 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [ -d "$projectName" ]; then
+if [[ -d "$projectName" ]]; then
     print_error "Project with name '$projectName' already exists!"
     exit 1
 fi
 
-if [ -z "$BRANCH_NAME" ]; then
+if [[ -z "$BRANCH_NAME" ]]; then
     # print_info "No option for '--branch' provided. Using 'trunk' as default value."
     BRANCH_NAME="trunk"
 fi
 
-if [ -z "$TEMPLATE_NAME" ]; then
+if [[ -z "$TEMPLATE_NAME" ]]; then
     # print_info "No option for '--template' provided. Using 'platform' as default value."
     TEMPLATE_NAME="platform"
 fi
 
-if [ ! -f $__PROGRAM_PATH/setups/$TEMPLATE_NAME ]; then
+if ! [[ -f $__PROGRAM_PATH/setups/$TEMPLATE_NAME ]]; then
     print_error "Template with name '$TEMPLATE_NAME' does not exist!"
     exit 1
 else

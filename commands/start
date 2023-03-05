@@ -19,10 +19,11 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [ ! -d "./$projectName" ]; then
-    print_error "Project '$projectName' does not exist"
-    exit 1
+use_project_dir
+
+if [ ! -f "./devenv.local.nix" ]; then
+    print_warn "Project '$projectName' does not have a 'devenv.local.nix' file. Run 'swdev create-config $projectName' first, to make sure all services work."
+    echo
 fi
 
-use_project_dir
 start_instance $HIDDEN

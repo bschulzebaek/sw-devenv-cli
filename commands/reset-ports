@@ -19,7 +19,9 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ $CONFIRM -ne 1 ]; then
-    read -p "Confirm deletion of project '$(pwd)/$projectName'? y/n: " -n 1 -r
+    print_warn "This is a destructive operation and will break existing projects!"
+    echo
+    read -p "Confirm reset of assigned ports? y/n: " -n 1 -r
     echo
 
     if ! [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -27,6 +29,8 @@ if [ $CONFIRM -ne 1 ]; then
     fi
 fi
 
-echo "Deleting ..."
-rm -rf $projectName
-echo "... Done!"
+use_state_dir
+rm ./assigned_ports 2> /dev/null || true
+
+echo
+print_warn "Done. Run 'swdev create-config <name>' to assign new ports to a project."

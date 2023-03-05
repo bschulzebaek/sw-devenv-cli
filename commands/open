@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+use_project_dir
+
+url=$(get_project_url)
+
+if which sensible-browser >/dev/null; then
+    sensible-browser $url
+elif which xdg-open >/dev/null; then
+    xdg-open $url
+elif which gnome-open >/dev/null; then
+    gnome-open $url
+elif which open >/dev/null; then
+    open $url
+fi

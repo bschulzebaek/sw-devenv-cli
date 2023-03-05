@@ -1,8 +1,7 @@
 #!/bin/bash
 
 create_config() {
-    use_project_dir
-    override="${2:-0}"
+    override="${1:-0}"
 
     local configPath=$(pwd)/devenv.local.nix
 
@@ -22,15 +21,22 @@ create_config() {
         cp $__PROGRAM_PATH/devenv.template.nix $configPath
     fi
 
-    local appProtocol="http"
-    local appUrl="$1.dev.localhost"
-    local appPort=80
+    if [[ $CONFIG_devenv_useSsl -eq 1 ]]; then
+        appProtocol="https"
+    else
+        appProtocol="http"
+    fi
+
+    if [[ $CONFIG_devenv_useVhost -eq 1 ]]; then
+        appUrl="${projectName}.dev.localhost"
+    else
+        appUrl="localhost:$(get_unused_port)"
+    fi
 
     sed -i -e "s/\__APP_PROTOCOL__/$appProtocol/;" $configPath
     sed -i -e "s/\__APP_URL__/$appUrl/;" $configPath
-    sed -i -e "s/\__APP_PORT__/$appPort/;" $configPath
 
-    local portPlaceholder="__REDIS_PORT__ __DATABASE_PORT__ __ADMINER_PORT__ __INSTALLER_PORT__ "
+    local portPlaceholder="__ADMINER_PORT__ __DATABASE_PORT__  __INSTALLER_PORT__ __REDIS_PORT__"
 
     for str in $portPlaceholder; do
         local tmpPort=$(get_unused_port)
@@ -43,7 +49,8 @@ create_config() {
     print_info "Config location: $configPath"
     echo
     print_info "Your instance will be available at $appProtocol://$appUrl"
-    print_info "Run 'swdev start $1' to apply the config."
+    print_info "Run 'swdev start $projectName' to apply the config."
     echo
     print_info "If this instance is new or updated, run 'composer setup' inside the shell next."
 }
+

@@ -2,6 +2,6 @@
 
 git clone $CONFIG_base_remote -b $BRANCH_NAME $projectName
 
-echo
+use_project_dir
 
-create_config $projectName
+create_config
