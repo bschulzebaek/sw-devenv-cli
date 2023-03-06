@@ -11,6 +11,7 @@ let vars = {
     env.APP_URL = "${vars.appProtocol}://${vars.appUrl}";
     env.CYPRESS_baseUrl = "${vars.appProtocol}://${vars.appUrl}";
 
+    scripts.caddy-setcap.exec = ''sudo setcap 'cap_net_bind_service=+eip' ${pkgs.caddy}/bin/caddy '';
     services.caddy = lib.mkForce {
         enable = true;
 
