@@ -36,19 +36,24 @@ create_config() {
     sed -i -e "s/\__APP_PROTOCOL__/$appProtocol/;" $configPath
     sed -i -e "s/\__APP_URL__/$appUrl/;" $configPath
 
-    local portPlaceholder="__ADMINER_PORT__ __DATABASE_PORT__  __INSTALLER_PORT__ __REDIS_PORT__"
+    local portAdminer=$(get_unused_port)
+    local portDatabase=$(get_unused_port)
+    local portInstaller=$(get_unused_port)
+    local portRedis=$(get_unused_port)
 
-    for str in $portPlaceholder; do
-        local tmpPort=$(get_unused_port)
+    sed -i -e "s/\__ADMINER_PORT__/$portAdminer/;" $configPath
+    sed -i -e "s/\__DATABASE_PORT__/$portDatabase/;" $configPath
+    sed -i -e "s/\__INSTALLER_PORT__/$portInstaller/;" $configPath
+    sed -i -e "s/\__REDIS_PORT__/$portRedis/;" $configPath
 
-        sed -i -e "s/\\$str/$tmpPort/;" $configPath
-    done
+    use_state_dir
 
-    use_project_dir
+    local shopwareUrl="${appProtocol}://${appUrl}"
+    declare -p appUrl appProtocol shopwareUrl portAdminer portDatabase portInstaller portRedis > $projectName
 
     print_info "Config location: $configPath"
     echo
-    print_info "Your instance will be available at $appProtocol://$appUrl"
+    print_info "Your instance will be available at ${shopwareUrl}"
     print_info "Run 'swdev start $projectName' to apply the config."
     echo
     print_info "If this instance is new or updated, run 'composer setup' inside the shell next."

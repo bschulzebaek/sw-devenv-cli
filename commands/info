@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
 
-use_project_dir
+use_state_dir
 
-file=$(cat $__DEVENV_FILE)
-
-databasePort=`sed -nE 's/databasePort = (.*?);/\1/p' <<< $file`
-adminerPort=`sed -nE 's/adminerPort = (.*?);/\1/p' <<< $file`
-installerPort=`sed -nE 's/installerPort = (.*?);/\1/p' <<< $file`
+source $projectName
 
 data=`cat <<EOF
 Service|Url
 --------|----
-Shopware|$(get_project_url | tr -d '[:space:]')
-Adminer|$(echo "http://localhost:$adminerPort" | tr -d '[:space:]')
-Database|$(echo "http://localhost:${databasePort}" | tr -d '[:space:]')
-Installer|$(echo "http://localhost:$installerPort" | tr -d '[:space:]')
+Shopware|${shopwareUrl}
+Adminer|http://127.0.0.1:${portAdminer}
+Database|http://127.0.0.1:${portDatabase}
+Installer|http://127.0.0.1:${portInstaller}
 EOF`
 
 echo

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-use_project_dir
+use_state_dir
 
-url=$(get_project_url)
+source $projectName
 
 if which sensible-browser >/dev/null; then
-    sensible-browser $url
+    sensible-browser $shopwareUrl
 elif which xdg-open >/dev/null; then
-    xdg-open $url
+    xdg-open $shopwareUrl
 elif which gnome-open >/dev/null; then
-    gnome-open $url
+    gnome-open $shopwareUrl
 elif which open >/dev/null; then
-    open $url
+    open $shopwareUrl
 fi
