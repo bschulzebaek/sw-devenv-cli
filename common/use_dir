@@ -20,6 +20,14 @@ use_project_dir() {
     cd $projectName
 }
 
+use_plugin_dir() {
+  use_working_dir
+
+  mkdir -p custom/plugins
+
+  cd custom/plugins
+}
+
 use_program_dir() {
     cd $__PROGRAM_PATH
 }

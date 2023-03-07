@@ -1,3 +1,15 @@
 #!/usr/bin/env bash
 
-echo "PLACEHOLDER"
+git clone $CONFIG_base_remote -b $BRANCH_NAME $projectName
+
+use_plugins_dir
+
+rm -rf rufus
+
+git clone git@gitlab.shopware.com:shopware/6/product/rufus.git
+git clone git@gitlab.shopware.com:shopware/6/product/SwagExtensionStore.git
+
+print_warn "By default the shop will be in construction mode. If you don't want to do the actual steps to launch the shop, you can change the DummyInstanceConfiguration (rufus/src/Core/Framework/Sbp/Instance/DummyInstanceConfiguration.php). Then switch SHOP_STATUS_CONSTRUCTION to SHOP_STATUS_LIVE."
+print_warn "Set your environment variables as explained at https://gitlab.shopware.com/shopware/6/product/rufus"
+
+create_config $PROJECT_NAME
