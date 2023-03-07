@@ -6,6 +6,7 @@ base:
 devenv:
   useVhost: 1
   useSsl: 0
+  urlPrefix: "dev"
   ports:
     start: 8000
     end: 10000

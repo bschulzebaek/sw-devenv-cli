@@ -29,7 +29,7 @@ create_config() {
     fi
 
     if [[ $CONFIG_devenv_useVhost -eq 1 ]]; then
-        appUrl="${projectName}.dev.localhost"
+        appUrl="${projectName}.${CONFIG_devenv_urlPrefix}.localhost"
     else
         appUrl="localhost:$(get_unused_port)"
     fi
