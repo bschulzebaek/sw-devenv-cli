@@ -3,6 +3,7 @@
 create_config() {
     override="${1:-0}"
 
+    use_project_dir
     local configPath=$(pwd)/devenv.local.nix
 
     if [ $override -ne 1 ] && [ -f $configPath ]; then
